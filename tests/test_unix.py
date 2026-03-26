@@ -442,4 +442,4 @@ def test_use_site_iter_dirs_no_duplicates(
     mocker.patch("platformdirs.unix.getuid", return_value=0)
     monkeypatch.setenv(xdg_var, "/custom/xdg/path")
     result = func(Unix(appname="foo", use_site_for_root=True))
-    assert list(result) == ["/custom/xdg/path/foo"]
+    assert list(result) == [os.path.join("/custom/xdg/path", "foo")]  # noqa: PTH118
